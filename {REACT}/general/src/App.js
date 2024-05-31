@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Panel, PanelGroup } from "react-resizable-panels";
 
-function App() {
+import ResizeHandle from "./ResizeHandle";
+import styles from "./styles.module.css";
+
+export default function App() {
+  const [showFirstPanel, setShowFirstPanel] = useState(true);
+  const [showLastPanel, setShowLastPanel] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+    <div className={styles.Container}>
+      <div className={styles.TopRow}>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          className={styles.Link}
+          href="https://github.com/bvaughn/react-resizable-panels"
         >
-          Learn React
+          github.com/bvaughn/react-resizable-panels
         </a>
-      </header>
+
+        <p>
+          <button
+            className={styles.Button}
+            onClick={() => setShowFirstPanel(!showFirstPanel)}
+          >
+            {showFirstPanel ? "hide" : "show"} top panel
+          </button>
+          &nbsp;
+          <button
+            className={styles.Button}
+            onClick={() => setShowLastPanel(!showLastPanel)}
+          >
+            {showLastPanel ? "hide" : "show"} bottom panel
+          </button>
+        </p>
+      </div>
+      <div className={styles.BottomRow}>
+        <PanelGroup autoSaveId="example" direction="horizontal">
+          <>
+            <Panel className={styles.Panel} defaultSize={20} order={1}>
+              <PanelGroup autoSaveId="example" direction="vertical">
+                <Panel className={styles.Panel} order={1}>
+                  <div className={styles.PanelContent}>tr</div>
+                </Panel>
+                <ResizeHandle />
+                <Panel className={styles.Panel} order={2}>
+                  <div className={styles.PanelContent}>tb</div>
+                </Panel>
+              </PanelGroup>
+            </Panel>
+            <ResizeHandle />
+          </>
+          <Panel className={styles.Panel} order={2}>
+            <PanelGroup autoSaveId="example" direction="vertical">
+              <Panel className={styles.Panel} order={1}>
+                <div className={styles.PanelContent}>tr</div>
+              </Panel>
+              <ResizeHandle />
+              <Panel className={styles.Panel} order={2}>
+                <div className={styles.PanelContent}>tb</div>
+              </Panel>
+            </PanelGroup>
+          </Panel>
+        </PanelGroup>
+      </div>
     </div>
   );
 }
-
-export default App;
