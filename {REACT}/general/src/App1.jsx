@@ -10,6 +10,7 @@ export default function App() {
 
   return (
     <div className={styles.Container}>
+      <button>collapse</button>
       <div className={styles.BottomRow}>
         <PanelGroup autoSaveId="example" direction="horizontal">
           <>
@@ -22,7 +23,7 @@ export default function App() {
             </Panel>
             <ResizeHandle />
           </>
-          <Panel className={styles.Panel} order={2}>
+          <Panel className={styles.Panel} collapsible={true} order={2}>
             <PanelGroup autoSaveId="example" direction="vertical">
               <Panel className={styles.Panel} order={2}>
                 <div className={styles.PanelContent}>tb</div>
