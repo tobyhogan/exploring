@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import "./root.css";
 
-import App from "./App";
+import App from "./App1";
 
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
